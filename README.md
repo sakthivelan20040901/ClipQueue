@@ -10,7 +10,9 @@
 
 - ✅ `Ctrl + Shift + C` → Append selected text to memory  
 - ✅ `Ctrl + Shift + V` → Paste all collected snippets  
-- ✅ `Ctrl + Shift + X` → Clear the clipboard memory  
+- ✅ `Ctrl + Shift + X` → Clear the clipboard memory 
+- 🔁 Shift + Tab → Reverse Tab Navigation (Move focus backward in tab order — works in most input forms)
+ 
 
 > Everything runs silently in the background — no UI, no file storage, just pure in-memory magic.
 
