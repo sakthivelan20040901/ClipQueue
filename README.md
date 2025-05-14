@@ -1,72 +1,125 @@
-# 📋 ClipMerge
+# 🧠 Clipboard Manager (AutoHotkey)
 
-**ClipMerge** is a lightweight, open-source clipboard enhancer built with [AutoHotKey](https://www.autohotkey.com/). It lets you **append multiple copied texts** into memory and paste them all together — without saving anything to disk.
-
-⚡ Perfect for developers, writers, students, and anyone juggling multiple snippets.
+A powerful and minimal clipboard manager built with AutoHotkey. This tool allows you to **append copied text**, **classify entries** (URL, Code, Text), **view logs with color coding**, and **manage clipboard history** via a user-friendly GUI.
 
 ---
 
-## ✨ Features
+## 📦 Features
 
-- ✅ `Ctrl + Shift + C` → Append selected text to memory  
-- ✅ `Ctrl + Shift + V` → Paste all collected snippets  
-- ✅ `Ctrl + Shift + X` → Clear the clipboard memory 
-- 🔁 Shift + Tab → Reverse Tab Navigation (Move focus backward in tab order — works in most input forms)
- 
-
-> Everything runs silently in the background — no UI, no file storage, just pure in-memory magic.
+- ✅ **Append copied snippets** using `Ctrl + Shift + C`
+- 🕒 **Track time and type** of each clipboard entry
+- 🌐 **Classify copied content** as:
+  - `URL` – Blue
+  - `Code` – Gray
+  - `Text` – Green
+- 📋 **Paste all collected entries** using `Ctrl + Shift + V`
+- 💾 **Export clipboard** to a `.txt` file (`Ctrl + Shift + E`)
+- ✍️ **Edit collected text** inside GUI
+- 📤 **Copy, clear, save, or export** from GUI (`Ctrl + Shift + G`)
+- ❎ **Reset clipboard memory** using `Ctrl + Shift + X`
+- 🔁 **Custom Shift+Tab mappings** for both left and right Shift keys
 
 ---
 
-## 💻 How to Install on Your Laptop
+## 🖥️ Hotkey Summary
 
-### Option 1: Run the Precompiled `.exe`
-1. [Download the latest `.exe` file from Releases](https://github.com/sakthivelan20040901/ClipQueue)
-2. Double-click to run.  
-3. It will work silently in the background. No installation required!
+| Hotkey              | Action                          |
+|---------------------|----------------------------------|
+| `Ctrl + Shift + C`  | Copy and append to memory        |
+| `Ctrl + Shift + V`  | Paste all collected text         |
+| `Ctrl + Shift + X`  | Clear clipboard memory           |
+| `Ctrl + Shift + E`  | Export clipboard to `.txt`       |
+| `Ctrl + Shift + G`  | Open GUI to view/edit/export     |
+| `LShift + Tab`      | Reverse tab                     |
+| `RShift + Tab`      | Reverse tab                     |
 
+---
+
+## ⚙️ Setup Instructions
+
+### 🔧 Step 1: Install AutoHotkey
+- Download from the [official AutoHotkey site](https://www.autohotkey.com/)
+- Run the installer and choose the **Unicode 64-bit** version
+
+### 📁 Step 2: Create and Run the Script
+1. Open **Notepad** or any text editor
+2. Paste the full clipboard manager script code
+3. Save it as:  
+   `ClipboardManager.ahk`
+4. Double-click the `.ahk` file to run it
+
+✅ You’ll now be able to use the hotkeys and GUI features!
+
+> Optional: Place a shortcut in the `Startup` folder to run on Windows boot:
+> ```
+> Win + R → shell:startup
+> ```
+
+---
+
+## 🎨 GUI Preview
+
+- A categorized clipboard log
+- Color-coded entries:
+  - 🔵 URLs
+  - ⚪ Code Snippets
+  - 🟢 Plain Text
+- Full edit box with:
+  - 💾 Save
+  - 📋 Copy
+  - ❌ Clear
+  - 📤 Export
+  - ❎ Close
+
+---
+
+## 🔍 How It Works
+
+### 📋 Clipboard Logging
+Each copy (`^+c`) captures:
+- Text content
+- Timestamp
+- Content type (via pattern matching)
+
+### 🔍 Type Detection Logic
+```autohotkey
+DetectClipboardType(text) {
+    if RegExMatch(text, "i)^(https?|ftp)://\S+$")
+        return "URL"
+    else if (InStr(text, "{") && InStr(text, "}")) || RegExMatch(text, "i)\b(function|var|let|const|if|else|<[^>]+>)\b")
+        return "Code"
+    else
+        return "Text"
+}
+🧰 Requirements
+Run the Precompiled .exe
+Download the latest .exe file from Releases
+Double-click to run.
+It will work silently in the background. No installation required!
 📌 You may optionally add it to:
-- **Startup folder** to launch on boot  
-- Use a tool like **TrayIt!** to keep it in the background tray (optional)
 
----
+Startup folder to launch on boot
+Use a tool like TrayIt! to keep it in the background tray (optional)
 
-### Option 2: Run the `.ahk` Script (if you use AutoHotKey)
+📁 Export Format
+When exporting, the full collected text is saved to a user-selected .txt file in UTF-8 format.
 
-1. [Install AutoHotKey](https://www.autohotkey.com/download/)
-2. Download `clipmerge.ahk` from the repo
-3. Double-click the file to start the script
-4. Done! Hotkeys will work right away
+💡 Future Enhancements
+🔍 Search/filter in GUI
 
----
+📅 Date-based grouping
 
-## 📦 Tech Stack
+🌓 Theme support
 
-- 💻 Built with [AutoHotKey v1.1+](https://www.autohotkey.com/)
-- 🧠 Fully in-memory clipboard storage
-- 🔓 Licensed under GPL (FOSS ❤️)
+📌 Pin snippets
 
----
+🔔 Tray icon quick access
 
-## 🧠 Suggest Your Shortcuts!
+👨‍💻 Author
+Created with ❤️ by Sakthivelan
+Inspired by daily productivity needs 🧠
 
-Want different hotkey combos like `Alt + C` or `Z + C`?  
-💬 Open an issue or leave a suggestion — your feedback is welcome!
+📜 License
+This project is free to use and modify for personal or professional use. Attribution appreciated but not required.
 
----
-
-## 📌 Coming Soon
-
-- 🔲 GUI version with customization
-- 🌐 Open-source release on GitHub
-- ☁️ Clipboard history (optional)
-
----
-
-## 📄 License
-
-Licensed under the **GPL**. Free to use, modify, and distribute.  
-Built with ❤️ by [Sakthivelan](https://www.linkedin.com/in/sakthivelan2004/)
-
----
-
+Let me know if you'd like the README exported as a downloadable file (`.md`), or if you'd like to add screenshots, badges, or GitHub instructions.
